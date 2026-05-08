@@ -4,6 +4,8 @@ A generative polyrhythmic MIDI sequencer device for Ableton Live 12 (Max for Liv
 
 ![Status](https://img.shields.io/badge/status-v1.0-orange) ![Live](https://img.shields.io/badge/Ableton-Live%2012-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
+![AURORA device in Ableton Live](screenshot.png)
+
 ## Features
 
 - **Markov walk** over scale degrees with adjustable probability of stepping (±1) vs random jump
