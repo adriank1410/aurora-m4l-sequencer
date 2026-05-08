@@ -399,7 +399,7 @@ lbl("LATCH", 362, 34, color=ACCENT_COLOR)
 lbl("PASS", 394, 30, color=ACCENT_COLOR)
 lbl("CHORD", 422, 34, color=ACCENT_COLOR)
 
-# Internal step counter mirror (not in presentation — used by swing logic only)
+# Internal step counter mirror (not in presentation — patching-view debug only)
 step_indicator = add({
     "id": nid(),
     "maxclass": "live.numbox",
@@ -775,8 +775,8 @@ connect(live_path_set, 0, prop_scale_msg, 0)
 connect(prop_scale_msg, 0, obs_scale, 0)
 
 
-# Live's scale_mode emits an INT (Live's internal scale enum index), not a
-# symbol. Map Live int → AURORA scale index (0..11).
+# Live's scale_name emits a SYMBOL (scale name string).
+# Map Live scale name → AURORA scale index (0..34).
 # Live's scale ordering (from transport bar UI), best-effort mapping:
 scale_map_coll = newobj("coll", 1340, 580, 80, 22, ins=1, outs=4,
                         outlettype=["", "", "", ""])
