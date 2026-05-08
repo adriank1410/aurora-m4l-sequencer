@@ -1634,11 +1634,11 @@
         "box": {
           "id": "obj-39",
           "maxclass": "comment",
-          "text": "\u25c6  by Adrian Kwiatkowski",
+          "text": "\u25c6  AURORA \u00b7 v1.0 \u00b7 by Adrian Kwiatkowski",
           "patching_rect": [
             0,
             0,
-            180,
+            240,
             14
           ],
           "fontsize": 8.5,
@@ -1650,7 +1650,7 @@
           "presentation_rect": [
             12,
             150,
-            180,
+            240,
             14
           ],
           "textcolor": [
@@ -1668,14 +1668,14 @@
           "patching_rect": [
             10,
             1330,
-            180,
+            240,
             14
           ],
           "presentation": 1,
           "presentation_rect": [
             12,
             150,
-            180,
+            240,
             14
           ],
           "numinlets": 1,
@@ -1707,7 +1707,7 @@
           "maxclass": "message",
           "text": "; max launchbrowser https://adriankwiatkowski.eu",
           "patching_rect": [
-            200,
+            260,
             1330,
             320,
             22

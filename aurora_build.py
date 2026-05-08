@@ -469,9 +469,9 @@ comment("FOLLOW", 0, 0, 60, 12,
 
 # Footer (y=150) — left: byline + clickable portfolio link.
 # right: feature tagline.
-comment("◆  by Adrian Kwiatkowski",
-        0, 0, 180, 14,
-        presentation=True, prect=[12, 150, 180, 14],
+comment("◆  AURORA · v1.0 · by Adrian Kwiatkowski",
+        0, 0, 240, 14,
+        presentation=True, prect=[12, 150, 240, 14],
         fontsize=8.5, color=TITLE_COLOR,
         justification=0, fontname="Arial Bold")
 
@@ -479,9 +479,9 @@ comment("◆  by Adrian Kwiatkowski",
 portfolio_btn = add({
     "id": nid(),
     "maxclass": "ubutton",
-    "patching_rect": [10, 1330, 180, 14],
+    "patching_rect": [10, 1330, 240, 14],
     "presentation": 1,
-    "presentation_rect": [12, 150, 180, 14],
+    "presentation_rect": [12, 150, 240, 14],
     "numinlets": 1,
     "numoutlets": 4,
     "outlettype": ["bang", "", "", "int"],
@@ -491,7 +491,7 @@ portfolio_btn = add({
 })
 portfolio_msg = msg(
     "; max launchbrowser https://adriankwiatkowski.eu",
-    200, 1330, 320,
+    260, 1330, 320,
 )
 connect(portfolio_btn, 0, portfolio_msg, 0)
 
