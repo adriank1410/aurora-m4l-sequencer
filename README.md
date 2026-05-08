@@ -56,7 +56,7 @@ Generative engine: tempo-synced metro → step counter → density gate → Mark
 
 Follow Live uses `[live.path live_set]` + `[live.observer root_note]` + `[live.observer scale_name]`, with cached values in `[int]` and `[zl.reg]`. A `[sel 1]` on the Follow toggle catches the off→on transition and emits the cached value through the gate so re-enabling Follow always picks up Live's current Scale and Root immediately.
 
-`aurora_build.py` is the patch generator — it composes the `.maxpat` JSON programmatically and wraps it in a binary `.amxd` container by copying the header from a real Live `.amxd` template (the script targets `/Volumes/Dane/Muzyka/Ableton/Factory Packs/Building Max Devices/Part 3 - Lessons/4 Controlling Live/Devices/2 Random launching.amxd`; adapt this path to your User Library if regenerating).
+`aurora_build.py` is the patch generator — it composes the `.maxpat` JSON programmatically and wraps it in a self-contained binary `.amxd` container (nested big-endian `ampf` → `mx@c` → `mDev` → `ptch` chunks). No external template file is needed.
 
 ## Compatibility
 
@@ -66,21 +66,22 @@ Follow Live uses `[live.path live_set]` + `[live.observer root_note]` + `[live.o
 
 ## Build / Modify
 
-`aurora_build.py` (Python 3.11+) generates both the `.maxpat` (Max patch) and the `.amxd` (Live device) files. The script writes the patcher dictionary as JSON, then prefixes it with a real `.amxd` binary header copied from a template file. Patch the script and re-run to regenerate.
+`aurora_build.py` (Python 3.11+) generates both the `.maxpat` (Max patch) and the `.amxd` (Live device) files. The script writes the patcher dictionary as JSON, then wraps it in a self-generated `.amxd` binary container. Output files are written next to the script. Edit the script and re-run to regenerate.
 
 ```bash
 python3.11 aurora_build.py
 ```
 
-The `.amxd` binary container format is little-endian flat chunks:
+The `.amxd` binary container format is nested big-endian chunks:
 
 ```
-'ampf' [4-byte LE size=4] ['mmmm' MIDI-effect marker]
-'meta' [4-byte LE size=4] [4-byte meta payload]
-'ptch' [4-byte LE size=N] [N bytes of UTF-8 maxpat JSON]
+'ampf' [4-byte BE size] >
+  'mx@c' [4-byte BE size] >
+    'mDev' [4-byte BE size] >
+      'ptch' [4-byte BE size] [N bytes of UTF-8 maxpat JSON]
 ```
 
-Replacing the `ptch` JSON in a known-good `.amxd` is the most reliable way to ship a custom device without going through the Max for Live editor's save flow.
+The script generates this structure directly — no external template or reference `.amxd` is needed.
 
 ## Author
 
