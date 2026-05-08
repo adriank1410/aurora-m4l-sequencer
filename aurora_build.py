@@ -12,7 +12,7 @@ import json
 import struct
 import os
 
-OUT_DIR = "/Users/adriank1410/Downloads"
+OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 _id_counter = [0]
 
